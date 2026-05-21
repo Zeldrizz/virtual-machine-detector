@@ -19,14 +19,11 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://zeldrizz.github.io/virtual-machine-detector/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v6
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v5
