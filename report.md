@@ -6,7 +6,7 @@ The project implements a Node.js + Express server with a Vanilla JS frontend on 
 
 The detector is browser-only. It does not use plugins, desktop applications, native code, mandatory permissions, or local file reads. Unsupported and HTTP-restricted APIs are recorded gracefully.
 
-The implementation combines the current calibrated VM scoring model with the best raw-inventory ideas from the `claude_task/vm-detector` implementation: extended WebGL/WebGPU dumps, server-visible headers, API availability matrix, media codec support, storage/crypto details, keyboard layout, speech voices, CSS/matchMedia support, and searchable raw data export.
+The implementation combines calibrated VM scoring with an extended raw-inventory layer: WebGL/WebGPU dumps, server-visible headers, API availability matrix, media codec support, storage/crypto details, keyboard layout, speech voices, CSS/matchMedia support, and searchable raw data export.
 
 The public GitHub Pages deployment uses `app/public` as a static artifact through `.github/workflows/pages.yml`. In that mode the browser-only scanner, hardware snapshot, raw inventory, and JSON exports remain available, while Express-only endpoints (`/report`, `/inspect`, `/ws`, `/ping`) are skipped or marked unavailable instead of contributing VM score.
 
