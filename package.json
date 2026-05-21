@@ -1,0 +1,18 @@
+{
+  "name": "virtual-machine-detector",
+  "version": "1.0.0",
+  "description": "Browser-based virtual machine and emulation anomaly scanner.",
+  "private": true,
+  "main": "app/server.js",
+  "scripts": {
+    "start": "node app/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

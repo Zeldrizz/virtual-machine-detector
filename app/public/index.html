@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>Virtual Machine Detector</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <h1>Virtual Machine Detector</h1>
+            <p id="runMeta">Waiting for scan</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="themeToggle" class="icon-button" type="button" title="Toggle theme" aria-label="Toggle theme">
+            <span aria-hidden="true">T</span>
+          </button>
+          <button id="restartButton" type="button">Restart</button>
+          <button id="exportButton" type="button" disabled>Export JSON</button>
+          <button id="hardwareExportButton" type="button" disabled>Export Hardware</button>
+          <button id="rawExportButton" type="button" disabled>Export Raw</button>
+          <button id="bundleExportButton" type="button" disabled>Export Bundle</button>
+          <button id="reportButton" type="button" disabled>Send Report</button>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="score-panel" aria-labelledby="scoreTitle">
+          <div class="score-head">
+            <div>
+              <h2 id="scoreTitle">Score</h2>
+              <p id="verdictText">Not started</p>
+            </div>
+            <span id="reportStatus" class="report-status" aria-live="polite"></span>
+          </div>
+          <div class="gauge" id="scoreGauge" style="--score: 0">
+            <div class="gauge-inner">
+              <strong id="scoreValue">0</strong>
+              <span>/100</span>
+            </div>
+          </div>
+          <div class="score-bands" aria-hidden="true">
+            <span class="band band-ok"></span>
+            <span class="band band-low"></span>
+            <span class="band band-mid"></span>
+            <span class="band band-high"></span>
+          </div>
+          <dl class="scan-stats">
+            <div>
+              <dt>Checks</dt>
+              <dd id="checksDone">0/10</dd>
+            </div>
+            <div>
+              <dt>Signals</dt>
+              <dd id="signalCount">0</dd>
+            </div>
+            <div>
+              <dt>Runtime</dt>
+              <dd id="runtimeValue">0 ms</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="checks-panel" aria-labelledby="checksTitle">
+          <div class="panel-title">
+            <h2 id="checksTitle">Checks</h2>
+            <div id="globalProgress" class="progress-label">Pending</div>
+          </div>
+          <div id="checksList" class="checks-list"></div>
+        </section>
+      </main>
+
+      <section id="hardwarePanel" class="hardware-panel" aria-labelledby="hardwareTitle" hidden>
+        <div class="panel-title">
+          <div>
+            <h2 id="hardwareTitle">Collected Hardware Data</h2>
+            <p id="hardwareMeta">Browser-visible snapshot</p>
+          </div>
+        </div>
+        <div id="hardwareGrid" class="hardware-grid"></div>
+        <details class="hardware-raw">
+          <summary>Raw Hardware JSON</summary>
+          <pre id="hardwareRaw">{}</pre>
+        </details>
+      </section>
+
+      <section id="rawPanel" class="raw-panel" aria-labelledby="rawTitle" hidden>
+        <div class="panel-title raw-title-row">
+          <div>
+            <h2 id="rawTitle">BrowserLeaks-Style Raw Inventory</h2>
+            <p id="rawMeta">Collecting extended browser-visible data</p>
+          </div>
+          <div class="raw-controls">
+            <input id="rawFilter" class="raw-filter" type="search" placeholder="Filter raw data">
+            <button id="rawToggleButton" type="button">Collapse</button>
+          </div>
+        </div>
+        <div id="rawContent" class="raw-content">
+          <div class="raw-placeholder">Waiting for scan</div>
+        </div>
+      </section>
+    </div>
+
+    <script src="detector.js" defer></script>
+  </body>
+</html>

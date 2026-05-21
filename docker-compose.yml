@@ -1,0 +1,22 @@
+services:
+  virtual-machine-detector:
+    build: .
+    image: virtual-machine-detector:latest
+    container_name: virtual-machine-detector
+    restart: unless-stopped
+    ports:
+      - "9331:9331"
+    environment:
+      PORT: "9331"
+      LOG_PATH: /app/data/scans.log
+    volumes:
+      - scans-log:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:9331/ping').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  scans-log:
